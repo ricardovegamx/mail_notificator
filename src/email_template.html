@@ -1,63 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Your Financial Report</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Report for Account {{ account_report["account_number"] }}</title>
 </head>
-<body>
-    <!-- Logo -->
-    <div style="text-align: left;">
-        <img src="logo.png" alt="Company Logo" width="100">
-    </div>
-
-    <!-- Introduction -->
-    <p>Hello, {{ account_number }}.</p>
-    <p>We are excited to present your latest financial report.</p>
-
-    <!-- Table 1: General Overview -->
-    <table border="1" cellpadding="10">
-        <caption>General Overview</caption>
+<body style="font-family: sans-serif; font-size: 16px; line-height: 1.5; margin: 0;padding: 0;">
+    <img src="https://rick-vega-assets.s3.us-west-2.amazonaws.com/stori/stori-logo.png" alt="Stori Logo" width="100px">
+    <hr style="height: 30px; background-color: transparent; border: none;">
+    <p>Hello, Stori Customer <strong>{{ account_number }}</strong>.</p>
+    <p>Here is the monthly report for your account.</p>
+    <table style="width: 540px; border-collapse: collapse; border-spacing: 0;">
         <thead>
             <tr>
-                <th>Monthly Balance</th>
-                <th>Credit Balance</th>
-                <th>Debit Balance</th>
-                <th>Total Number of Transactions</th>
+                <th style="font-size: 13px; padding-left: 4px; text-align:left">Total Balance</th>
+                <th style="font-size: 13px; padding-left: 4px; text-align:left">Average Debit Amount</th>
+                <th style="font-size: 13px; padding-left: 4px; text-align:left">Average Credit Amount</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{ monthly_balance }}</td>
-                <td>{{ credit_balance }}</td>
-                <td>{{ debit_balance }}</td>
-                <td>{{ total_transactions }}</td>
+                <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ account_report["total_balance"] }}</td>
+                <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ account_report["average_debit_amount"] }}</td>
+                <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ account_report["average_credit_amount"] }}</td>
             </tr>
         </tbody>
     </table>
-
-    <!-- Table 2: Summary Transactions -->
-    <table border="1" cellpadding="10">
-        <caption>Summary Transactions</caption>
+    <hr style="height: 20px; background-color: transparent; border: none;">
+    <table style="width: 540px;">
         <thead>
             <tr>
-                <th>Year</th>
-                <th>Month</th>
-                <th>Total Transactions</th>
-                <th>Debit Average</th>
-                <th>Credit Average</th>
+                <th style="font-size: 13px; padding-left: 4px">Year</th>
+                <th style="font-size: 13px; padding-left: 4px">Month</th>
+                <th style="font-size: 13px; padding-left: 4px">Total Transactions</th>
+                <th style="font-size: 13px; padding-left: 4px">Debit Transactions</th>
+                <th style="font-size: 13px; padding-left: 4px">Average Debit Amount</th>
+                <th style="font-size: 13px; padding-left: 4px">Credit Transactions</th>
+                <th style="font-size: 13px; padding-left: 4px">Average Credit Amount</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ year }}</td>
-                <td>{{ month }}</td>
-                <td>{{ total_transactions }}</td>
-                <td>{{ debit_average }}</td>
-                <td>{{ credit_average }}</td>
-            </tr>
-        </tbody>
+            {% for year, months in account_report["monthly_transactions"].items() %}
+              {% for month, data in months.items() %}
+                <tr>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ year }}</td>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ month_names[month|int] }}</td>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ data['month_transactions_count'] }}</td>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ data['debit_transactions_count'] }}</td>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ data['debit_transaction_month_avg'] }}</td>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ data['credit_transactions_count'] }}</td>
+                  <td style="font-size: 13px; padding-left: 4px; text-align:left">{{ data['credit_transaction_month_avg'] }}</td>
+                </tr>
+              {% endfor %}
+            {% endfor %}
+          </tbody>
     </table>
-
-    <!-- Final Paragraph -->
-    <p>If you have any questions, please contact us at {{ phone_number }} or reply directly to this email.</p>
+    <hr style="height: 20px; background-color: transparent; border: none;">
+    <p>If you have any questions, please do not hesitate to reach us at 55-7822-6646 or <a style="text-decoration: underline;" href="mailto:stori.support@example.com">stori.support@example.com</a>.</p>
+    <p>Thank you for being a Stori customer.</p>
 </body>
 </html>
