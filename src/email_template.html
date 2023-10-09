@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Financial Report</title>
+</head>
+<body>
+    <!-- Logo -->
+    <div style="text-align: left;">
+        <img src="logo.png" alt="Company Logo" width="100">
+    </div>
+
+    <!-- Introduction -->
+    <p>Hello, {{ account_number }}.</p>
+    <p>We are excited to present your latest financial report.</p>
+
+    <!-- Table 1: General Overview -->
+    <table border="1" cellpadding="10">
+        <caption>General Overview</caption>
+        <thead>
+            <tr>
+                <th>Monthly Balance</th>
+                <th>Credit Balance</th>
+                <th>Debit Balance</th>
+                <th>Total Number of Transactions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ monthly_balance }}</td>
+                <td>{{ credit_balance }}</td>
+                <td>{{ debit_balance }}</td>
+                <td>{{ total_transactions }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Table 2: Summary Transactions -->
+    <table border="1" cellpadding="10">
+        <caption>Summary Transactions</caption>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Total Transactions</th>
+                <th>Debit Average</th>
+                <th>Credit Average</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ year }}</td>
+                <td>{{ month }}</td>
+                <td>{{ total_transactions }}</td>
+                <td>{{ debit_average }}</td>
+                <td>{{ credit_average }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Final Paragraph -->
+    <p>If you have any questions, please contact us at {{ phone_number }} or reply directly to this email.</p>
+</body>
+</html>
