@@ -64,7 +64,7 @@ def lambda_handler(event, context):
     sqs_response = sqs.delete_message(QueueUrl=queue_url, ReceiptHandle=receipt_handle)
     
     if sqs_response["ResponseMetadata"]["HTTPStatusCode"] == 200:
-        logger.info(f"message deleted successfully: {response['MessageId']}")
+        logger.info(f"sqs message deleted successfully: {response['MessageId']}")
 
 
 if __name__ == "__main__":
