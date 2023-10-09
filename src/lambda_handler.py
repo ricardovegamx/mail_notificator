@@ -56,7 +56,7 @@ def lambda_handler(event, context):
     if response["ResponseMetadata"]["HTTPStatusCode"] == 200:
         logger.info(f"email sent with id: {response['MessageId']}")
 
-    # If mail got sent, delete the sqs message as it's been processed
+    # if mail got sent, delete the sqs message as it's been processed
     sqs = boto3.client("sqs", region_name="us-west-2")
     queue_url = os.getenv("EMAIL_NOTIFICATIONS_QUEUE_URL")
     receipt_handle = event["Records"][0]["receiptHandle"]
