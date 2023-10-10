@@ -47,7 +47,7 @@ pip install -r requirements-dev.txt
 make create-layer
 ```
 
-NOTE: Please update your dependencies ARN URL after creating the layer in the `Makefile` file.
+NOTE: Please update your dependencies ARN after creating the layer in the `Makefile` file.
 
 3. Create the lambda function:
 
@@ -70,3 +70,7 @@ make delete-lambda
 ## CODE STYLE
 
 Use `make lint` to format the code style to sensible defaults.
+
+## PERMISSIONS
+
+The lambda will need the following permissions: SES and SQS access.
