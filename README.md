@@ -64,3 +64,7 @@ make update-lambda
 ```bash
 make delete-lambda
 ```
+
+## CODE STYLE
+
+Use `make lint` to format the code style to sensible defaults.
